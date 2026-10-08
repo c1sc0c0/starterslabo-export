@@ -1,0 +1,20 @@
+# Local tooling
+.venv/
+__pycache__/
+*.pyc
+dist/
+.DS_Store
+*.zip
+**/*.png
+
+# Credentials — never commit
+.env
+.env.*
+!**/.env.example
+scripts/.env
+
+# Portal accounting dumps — contain customer/supplier PII
+# Keep them local (or in a private data repo). Use --force to refresh.
+rapport-export/
+*.csv
+*.xlsx
