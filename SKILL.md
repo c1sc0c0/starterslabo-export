@@ -1,5 +1,5 @@
 ---
-name: starterslabo-rapport
+name: starterslabo-export
 description: >-
   Sync accounting Rapport tables from mijn.starterslabo.be to CSV (portal Excel
   export → CSV). Use when the user mentions Rapport export, boekhouding CSV,
@@ -102,8 +102,8 @@ Details: [`reference.md`](reference.md).
 ## Install this skill
 
 ```bash
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git .cursor/skills/starterslabo-rapport
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git ~/.cursor/skills/starterslabo-rapport
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git .claude/skills/starterslabo-rapport
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git ~/.claude/skills/starterslabo-rapport
+git clone https://github.com/c1sc0c0/starterslabo-export.git .cursor/skills/starterslabo-export
+git clone https://github.com/c1sc0c0/starterslabo-export.git ~/.cursor/skills/starterslabo-export
+git clone https://github.com/c1sc0c0/starterslabo-export.git .claude/skills/starterslabo-export
+git clone https://github.com/c1sc0c0/starterslabo-export.git ~/.claude/skills/starterslabo-export
 ```

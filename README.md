@@ -12,16 +12,16 @@ Clone this repo **as the skill folder** (it must contain `SKILL.md` at the root)
 
 ```bash
 # Cursor — this project
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git .cursor/skills/starterslabo-rapport
+git clone https://github.com/c1sc0c0/starterslabo-export.git .cursor/skills/starterslabo-export
 
 # Cursor — all projects
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git ~/.cursor/skills/starterslabo-rapport
+git clone https://github.com/c1sc0c0/starterslabo-export.git ~/.cursor/skills/starterslabo-export
 
 # Claude Code — this project
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git .claude/skills/starterslabo-rapport
+git clone https://github.com/c1sc0c0/starterslabo-export.git .claude/skills/starterslabo-export
 
 # Claude Code — all projects
-git clone https://github.com/c1sc0c0/starterslabo-rapport.git ~/.claude/skills/starterslabo-rapport
+git clone https://github.com/c1sc0c0/starterslabo-export.git ~/.claude/skills/starterslabo-export
 ```
 
 Start a new agent chat so the skill is picked up.
@@ -31,7 +31,7 @@ Start a new agent chat so the skill is picked up.
 ## Setup (once)
 
 ```bash
-cd /path/to/starterslabo-rapport
+cd /path/to/starterslabo-export
 python3 -m venv .venv
 .venv/bin/pip install -r scripts/requirements.txt
 .venv/bin/playwright install chromium
@@ -56,7 +56,7 @@ Tell the agent something like:
 Or run manually:
 
 ```bash
-cd /path/to/starterslabo-rapport
+cd /path/to/starterslabo-export
 
 # First pull → writes rapport-export/*.csv + manifest.json
 .venv/bin/python scripts/sync_rapport.py
