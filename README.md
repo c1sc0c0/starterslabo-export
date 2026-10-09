@@ -47,6 +47,24 @@ export STARTERSLABO_PASSWORD='your-password'
 
 Prefer env vars / `.env` over CLI `--password` so the secret does not appear in shell history.
 
+## Where CSVs go (path config)
+
+Zero-config default: `rapport-export/` under this skill (gitignored).
+
+For a dedicated data directory (recommended if you also use Beancount):
+
+```bash
+cp starterslabo.yaml.example ~/labo-data/starterslabo.yaml
+# edit export_dir / books_dir if needed
+export STARTERSLABO_CONFIG=~/labo-data/starterslabo.yaml
+# or: export STARTERSLABO_DATA=~/labo-data
+# or: export STARTERSLABO_EXPORT_DIR=~/labo-data/export
+
+.venv/bin/python scripts/sync_rapport.py --print-paths
+```
+
+Shared with [`starterslabo-beancount`](https://github.com/c1sc0c0/starterslabo-beancount). Full rules: [`docs/PATHS.md`](docs/PATHS.md). Human pipeline: [`docs/OVERVIEW.md`](docs/OVERVIEW.md).
+
 ## Use
 
 Tell the agent something like:
@@ -58,7 +76,7 @@ Or run manually:
 ```bash
 cd /path/to/starterslabo-export
 
-# First pull → writes rapport-export/*.csv + manifest.json
+# First pull → writes resolved export_dir/*.csv + manifest.json
 .venv/bin/python scripts/sync_rapport.py
 
 # Periodic refresh into the same folder (overwrite in place)
@@ -67,7 +85,7 @@ cd /path/to/starterslabo-export
 
 ### Overwrite safety
 
-Default output is the **stable** folder `rapport-export/` (good for cron / agent re-runs).
+Default output is a **stable** folder (skill `rapport-export/` or your configured `export_dir`) — good for cron / agent re-runs.
 
 | Situation | Behaviour |
 |-----------|-----------|
@@ -122,6 +140,7 @@ This repository must stay free of real credentials and accounting data.
 | `scripts/.env` | **Gitignored** — your real login |
 | `rapport-export/` | **Gitignored** — real CSVs with customer/supplier data |
 | `*.csv` / `*.xlsx` | **Gitignored** |
+| Your configured `export/` | Keep in a **private** data repo / vault |
 
 Before every push, confirm:
 
@@ -134,6 +153,8 @@ Never paste portal passwords or export CSVs into public issues/PRs.
 
 ## Related
 
+- [docs/OVERVIEW.md](docs/OVERVIEW.md) · [docs/PATHS.md](docs/PATHS.md)  
+- [starterslabo-beancount](https://github.com/c1sc0c0/starterslabo-beancount) — CSV → Beancount  
 - [starterslabo-skills](https://github.com/c1sc0c0/starterslabo-skills) — index of all skills  
 - [starterlabo-invoices](https://github.com/c1sc0c0/starterlabo-invoices) — verkoopfactuur drafts  
 - [starterslabo-expenses](https://github.com/c1sc0c0/starterslabo-expenses) — aankoopfactuur SL  

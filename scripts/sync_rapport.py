@@ -367,7 +367,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--output",
         type=Path,
         default=None,
-        help="Output directory (default: ./rapport-export under skill root)",
+        help=(
+            "CSV output directory. Default: STARTERSLABO_EXPORT_DIR, else "
+            "STARTERSLABO_DATA/export, else starterslabo.yaml, else "
+            "./rapport-export under skill root. See docs/PATHS.md."
+        ),
+    )
+    p.add_argument(
+        "--print-paths",
+        action="store_true",
+        help="Print resolved export/books paths and exit",
     )
     p.add_argument(
         "--tabs",
@@ -406,6 +415,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+
+    _scripts = Path(__file__).resolve().parent
+    if str(_scripts) not in sys.path:
+        sys.path.insert(0, str(_scripts))
+    from paths import describe_paths, export_dir  # noqa: E402
+
+    if args.print_paths:
+        print(describe_paths())
+        return 0
+
     if args.email:
         import os
 
@@ -423,11 +442,7 @@ def main(argv: list[str] | None = None) -> int:
         print("Known:", ", ".join(TABS), file=sys.stderr)
         return 2
 
-    output = args.output
-    if output is None:
-        # Stable folder for periodic overwrite-in-place (+ git for history).
-        output = skill_root() / "rapport-export"
-    output = output.expanduser().resolve()
+    output = export_dir(cli=args.output)
     output.mkdir(parents=True, exist_ok=True)
 
     existing = existing_export_files(output)

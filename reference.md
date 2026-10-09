@@ -17,7 +17,8 @@ The skill does **not** scrape HTML tables as the primary path. It triggers the s
 
 ```text
 .venv/bin/python scripts/sync_rapport.py
-  [--output DIR]          default: <skill-root>/rapport-export
+  [--output DIR]          override export dir (else paths.py resolution)
+  [--print-paths]         show config / data_root / export_dir / books_dir
   [--tabs k1,k2,…]        default: all (see SKILL.md)
   [--force]               overwrite existing CSV/XLSX/manifest.json
   [--keep-xlsx]           keep portal .xlsx next to CSV
@@ -26,6 +27,10 @@ The skill does **not** scrape HTML tables as the primary path. It triggers the s
 ```
 
 `HEADED=1` → visible Chromium.
+
+### Path resolution
+
+See [`docs/PATHS.md`](docs/PATHS.md). Short form: CLI `--output` → `STARTERSLABO_EXPORT_DIR` → `STARTERSLABO_DATA` / `starterslabo.yaml` → skill `rapport-export/`. Shared module: `scripts/paths.py` (also used by starterslabo-beancount).
 
 ### Exit codes
 
